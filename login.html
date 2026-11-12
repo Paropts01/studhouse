@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | Stud House</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<main class="login-page">
+  <div class="login-container">
+    <img src="assets/official.png" alt="Stud House logo" class="login-logo">
+    <h1>Welcome back</h1>
+    <p class="login-description">Log in to continue to Stud House.</p>
+
+    <form class="form-panel panel" id="login-form" novalidate>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Your password" required>
+      </div>
+      <p class="form-message" id="login-message" role="status"></p>
+      <button class="button button-primary" type="submit">Log In</button>
+
+      <p class="admin-quick-row">
+        <button type="button" id="admin-quick-btn" class="admin-quick-btn">
+          <i class="fa-solid fa-shield-halved"></i> Sign in as Admin
+        </button>
+      </p>
+
+      <p class="forgot-password-row">
+        <button type="button" id="forgot-password-btn">Forgot password?</button>
+      </p>
+      <p class="register-text">New here? <a href="register.html">Create an account</a></p>
+    </form>
+
+    <p class="login-footer">Prototype only — accounts are stored in this browser.</p>
+  </div>
+</main>
+
+</body>
+</html>

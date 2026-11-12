@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Stud House</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<main class="login-page">
+  <div class="login-container">
+    <img src="assets/official.png" alt="Stud House logo" class="login-logo">
+    <h1>Create your account</h1>
+    <p class="login-description">Join Stud House to browse listings, share info and connect with businesses.</p>
+
+    <form class="form-panel panel" id="register-form" novalidate>
+      <div class="field">
+        <label>I am a…</label>
+        <div class="role-options">
+          <label class="role-option">
+            <input type="radio" name="role" value="student" checked>
+            <span class="role-option__title">Student</span>
+            <span class="role-option__desc">Find info &amp; deals</span>
+          </label>
+          <label class="role-option">
+            <input type="radio" name="role" value="business">
+            <span class="role-option__title">Business owner</span>
+            <span class="role-option__desc">List my business</span>
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required>
+      </div>
+      <div class="field">
+        <label for="reg-email">Email address</label>
+        <input type="email" id="reg-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="reg-password">Password</label>
+        <input type="password" id="reg-password" name="password" autocomplete="new-password" placeholder="At least 6 characters" required>
+      </div>
+      <div class="field">
+        <label for="reg-confirm">Confirm password</label>
+        <input type="password" id="reg-confirm" name="confirm" autocomplete="new-password" placeholder="Repeat your password" required>
+      </div>
+      <p class="form-message" id="register-message" role="status"></p>
+      <button class="button button-primary" type="submit">Create Account</button>
+      <p class="register-text">Already have an account? <a href="login.html">Log in</a></p>
+    </form>
+    <p class="login-footer">Prototype only — accounts are stored in this browser.</p>
+  </div>
+</main>
+
+</body>
+</html>

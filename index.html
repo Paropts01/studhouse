@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stud House | Student life, made simpler</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="site-nav">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="logo-link" aria-label="Go to home page">
+      <img src="assets/official.png" alt="Stud House logo" class="logo">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><i class="fa-solid fa-bars"></i> Menu</button>
+    <div class="nav-links" id="primary-links">
+      <a href="index.html">Home</a>
+      
+      <!-- Dropdown Group -->
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn">Explore <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="nav-dropdown-menu">
+          <a href="accommodation.html">Accommodation</a>
+          <a href="businesses.html">Businesses</a>
+          <a href="transport.html">Transport</a>
+          <a href="discounts.html">Student Deals</a>
+        </div>
+      </div>
+
+      <a href="about_us.html">About Us</a>
+      <a href="login.html" id="logout-link">Log Out</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">Your campus community</p>
+      <h1>Student life, made simpler.</h1>
+      <p>Find accommodation, transport, local businesses and student-friendly deals in one place.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="accommodation.html">Find accommodation</a>
+        <a class="button button-outline" href="discounts.html">Explore student deals</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Explore Stud House</p>
+      <h2>What do you need today?</h2>
+      <p>Choose a category to get started. Listings shown in this prototype are examples only.</p>
+    </div>
+    <div class="panel-stack panel-grid">
+      <article class="panel feature-panel">
+        <span class="panel-icon" aria-hidden="true"><i class="fa-solid fa-house"></i></span>
+        <h3>Accommodation</h3>
+        <p>Browse places to stay by campus area and budget.</p>
+        <a class="text-link" href="accommodation.html">Explore accommodation &rarr;</a>
+      </article>
+      <article class="panel feature-panel">
+        <span class="panel-icon" aria-hidden="true"><i class="fa-solid fa-store"></i></span>
+        <h3>Local businesses</h3>
+        <p>Discover small and student-owned businesses near you.</p>
+        <a class="text-link" href="businesses.html">Find businesses &rarr;</a>
+      </article>
+      <article class="panel feature-panel">
+        <span class="panel-icon" aria-hidden="true"><i class="fa-solid fa-bus"></i></span>
+        <h3>Transport</h3>
+        <p>Compare local transport options for your campus journey.</p>
+        <a class="text-link" href="transport.html">View transport &rarr;</a>
+      </article>
+      <article class="panel feature-panel">
+        <span class="panel-icon" aria-hidden="true"><i class="fa-solid fa-percent"></i></span>
+        <h3>Student deals</h3>
+        <p>Find food, clothing and other offers that suit your budget.</p>
+        <a class="text-link" href="discounts.html">See discounts &rarr;</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Popular right now</p>
+      <h2>Featured student picks</h2>
+    </div>
+
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-media">
+          <img src="assets/03.jpg" alt="Student room" loading="lazy" onerror="this.style.display='none'">
+          <span class="card-badge">Accommodation</span>
+        </div>
+        <div class="card-body">
+          <h3>En-suite room, Braamfontein</h3>
+          <p class="price">R4 800 <small>per month</small></p>
+          <p>Private bathroom, Wi-Fi and 24-hour security, 10 minutes from campus.</p>
+          <div class="card-actions">
+            <a class="button button-primary" href="accommodation.html">View listing</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="assets/The Coffee Bean.jpg" alt="Student café" loading="lazy" onerror="this.style.display='none'">
+          <span class="card-badge">Business</span>
+        </div>
+        <div class="card-body">
+          <h3>Corner Bean Café</h3>
+          <p>Student-run coffee spot with free Wi-Fi and study-friendly seating.</p>
+          <ul class="card-meta">
+            <li><i class="fa-solid fa-mug-hot"></i> Coffee</li>
+            <li><i class="fa-solid fa-location-dot"></i> Campus gate</li>
+          </ul>
+          <div class="card-actions">
+            <a class="button button-primary" href="businesses.html">See business</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="assets/stationery.jpg" alt="Student deal" loading="lazy" onerror="this.style.display='none'">
+          <span class="card-badge">Deal</span>
+        </div>
+        <div class="card-body">
+          <h3>20% off stationery</h3>
+          <p>Show your student card at the till to claim the discount.</p>
+          <ul class="card-meta">
+            <li><i class="fa-solid fa-tag"></i> 20% off</li>
+            <li><i class="fa-solid fa-calendar-days"></i> Ends 30 Nov</li>
+          </ul>
+          <div class="card-actions">
+            <a class="button button-primary" href="discounts.html">View deal</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Fresh on Stud House</p>
+      <h2>Latest posts</h2>
+      <p>The newest things shared by students and business owners.</p>
+    </div>
+    <div class="card-grid" id="latest-posts-grid"></div>
+  </section>
+
+  <section class="section">
+    <div class="split-layout">
+      <div>
+        <p class="eyebrow">Designed around students</p>
+        <h2>Make informed choices with less searching.</h2>
+        <p>Stud House brings useful student services together. Check listing details, compare options and contact providers to confirm information before making a decision.</p>
+      </div>
+      <aside class="panel note-panel">
+        <h3>Stay safe online</h3>
+        <p>Always confirm prices, availability, location and provider details directly before paying or sharing personal information.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

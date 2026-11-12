@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Stud House</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="site-nav">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="logo-link" aria-label="Go to home page">
+      <img src="assets/official.png" alt="Stud House logo" class="logo">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><i class="fa-solid fa-bars"></i> Menu</button>
+    <div class="nav-links" id="primary-links">
+      <a href="index.html">Home</a>
+      
+      <!-- Dropdown Group -->
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn">Explore <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="nav-dropdown-menu">
+          <a href="accommodation.html">Accommodation</a>
+          <a href="businesses.html">Businesses</a>
+          <a href="transport.html">Transport</a>
+          <a href="discounts.html">Student Deals</a>
+        </div>
+      </div>
+
+      <a href="about_us.html">About Us</a>
+      <a href="login.html" id="logout-link">Log Out</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-banner">
+    <div class="banner-inner">
+      <p class="eyebrow">Administration</p>
+      <h1>Admin dashboard</h1>
+      <p>Review business verification requests, investigate reports and remove listings that break the rules.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="admin-stats-grid" id="admin-stats"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Identity checks</p>
+      <h2>Business verification requests</h2>
+      <p>Business owners submit their ID number, date of birth, company details and an ID document. Approving a request awards the verified badge to all of that owner's business listings.</p>
+    </div>
+    <div id="admin-verifications"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Moderation</p>
+      <h2>Reported listings</h2>
+      <p>Reports are grouped by listing. Remove a listing to hide it from every public page, or clear the reports once you've reviewed them.</p>
+    </div>
+    <div id="admin-reports"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Removed</p>
+      <h2>Removed listings</h2>
+      <p>Listings you have taken down. You can restore any of them if a decision was reversed.</p>
+    </div>
+    <div id="admin-removed"></div>
+  </section>
+</main>
+
+</body>
+</html>

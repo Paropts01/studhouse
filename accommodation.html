@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accommodation | Stud House</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="site-nav">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="logo-link" aria-label="Go to home page">
+      <img src="assets/official.png" alt="Stud House logo" class="logo">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><i class="fa-solid fa-bars"></i> Menu</button>
+    <div class="nav-links" id="primary-links">
+      <a href="index.html">Home</a>
+      
+      <!-- Dropdown Group -->
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn">Explore <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="nav-dropdown-menu">
+          <a href="accommodation.html">Accommodation</a>
+          <a href="businesses.html">Businesses</a>
+          <a href="transport.html">Transport</a>
+          <a href="discounts.html">Student Deals</a>
+        </div>
+      </div>
+
+      <a href="about_us.html">About Us</a>
+      <a href="login.html" id="logout-link">Log Out</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-banner">
+    <div class="banner-inner">
+      <p class="eyebrow">Places to stay</p>
+      <h1>Accommodation</h1>
+      <p>Filter by your institution or campus, province, town, budget and room type to find a place that suits you.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <form class="filter-panel panel" id="accommodation-filters" onsubmit="return false;">
+      <div class="field">
+        <label for="filter-campus">Institution / campus</label>
+        <select id="filter-campus" data-institution-select>
+          <option value="">Any campus</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filter-province">Province</label>
+        <select id="filter-province">
+          <option value="">Any province</option>
+          <option>Eastern Cape</option>
+          <option>Free State</option>
+          <option>Gauteng</option>
+          <option>KwaZulu-Natal</option>
+          <option>Limpopo</option>
+          <option>Mpumalanga</option>
+          <option>Northern Cape</option>
+          <option>North West</option>
+          <option>Western Cape</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filter-town">Town</label>
+        <input type="search" id="filter-town" placeholder="e.g. Braamfontein">
+      </div>
+      <div class="field">
+        <label for="filter-budget">Budget (monthly)</label>
+        <select id="filter-budget">
+          <option value="">Any budget</option>
+          <option value="0-3000">Under R3 000</option>
+          <option value="3000-5000">R3 000 – R5 000</option>
+          <option value="5000-8000">R5 000 – R8 000</option>
+          <option value="8000-999999">R8 000 and above</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filter-type">Accommodation type</label>
+        <select id="filter-type">
+          <option value="">Any type</option>
+          <option>En-suite</option>
+          <option>Shared flat</option>
+          <option>Studio</option>
+          <option>Room in house</option>
+          <option>Residence</option>
+          <option>Bachelor flat</option>
+        </select>
+      </div>
+      <button class="button button-primary" type="submit">Search</button>
+    </form>
+  </section>
+
+  <section class="section">
+    <div class="section-heading compact-heading">
+      <p class="eyebrow">Available now</p>
+      <h2>Featured listings</h2>
+    </div>
+    <div class="card-grid" id="accommodation-grid"></div>
+  </section>
+</main>
+
+</body>
+</html>

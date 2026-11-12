@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | Stud House</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="site-nav">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="logo-link" aria-label="Go to home page">
+      <img src="assets/official.png" alt="Stud House logo" class="logo">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><i class="fa-solid fa-bars"></i> Menu</button>
+    <div class="nav-links" id="primary-links">
+      <a href="index.html">Home</a>
+      
+      <!-- Dropdown Group -->
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn">Explore <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="nav-dropdown-menu">
+          <a href="accommodation.html">Accommodation</a>
+          <a href="businesses.html">Businesses</a>
+          <a href="transport.html">Transport</a>
+          <a href="discounts.html">Student Deals</a>
+        </div>
+      </div>
+
+      <a href="about_us.html">About Us</a>
+      <a href="login.html" id="logout-link">Log Out</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-banner">
+    <div class="banner-inner">
+      <p class="eyebrow">Your account</p>
+      <h1>My profile</h1>
+      <p>Keep your details up to date, manage your password and see your listings, reports and verification status.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div id="profile-header" class="panel profile-header"></div>
+  </section>
+
+  <section class="section profile-layout">
+    <div class="profile-main">
+      <form id="profile-form" class="panel form-panel" novalidate>
+        <h2>Account details</h2>
+
+        <div class="profile-avatar-row">
+          <div id="profile-avatar-preview"></div>
+          <div class="profile-avatar-controls">
+            <div class="field">
+              <label for="profile-avatar">Profile photo (optional, max 500 KB)</label>
+              <input type="file" id="profile-avatar" accept="image/*">
+            </div>
+            <label class="checkbox-row">
+              <input type="checkbox" id="profile-remove-avatar">
+              Remove current photo
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="profile-name">Full name</label>
+          <input type="text" id="profile-name" required>
+        </div>
+
+        <div class="field">
+          <label for="profile-email">Email address</label>
+          <input type="email" id="profile-email" disabled>
+        </div>
+
+        <div class="field">
+          <label for="profile-phone">Phone number</label>
+          <input type="tel" id="profile-phone" placeholder="+27 82 000 0000">
+        </div>
+
+        <div class="field">
+          <label for="profile-campus">Campus</label>
+          <select id="profile-campus" data-institution-select>
+            <option value="">Not specified</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="profile-bio">Short bio</label>
+          <textarea id="profile-bio" rows="3" maxlength="300"
+            placeholder="Tell other students a little about yourself"></textarea>
+        </div>
+
+        <p class="form-message" id="profile-message" role="status"></p>
+        <button class="button button-primary" type="submit">Save changes</button>
+      </form>
+
+      <form id="password-form" class="panel form-panel" novalidate>
+        <h2>Change password</h2>
+
+        <div class="field">
+          <label for="current-password">Current password</label>
+          <input type="password" id="current-password" autocomplete="current-password" required>
+        </div>
+        <div class="field">
+          <label for="new-password">New password</label>
+          <input type="password" id="new-password" autocomplete="new-password"
+            placeholder="At least 6 characters" required>
+        </div>
+        <div class="field">
+          <label for="confirm-password">Confirm new password</label>
+          <input type="password" id="confirm-password" autocomplete="new-password" required>
+        </div>
+
+        <p class="form-message" id="password-message" role="status"></p>
+        <button class="button button-primary" type="submit">Update password</button>
+      </form>
+    </div>
+
+    <aside class="profile-side">
+      <div id="profile-verification" class="panel"></div>
+      <div id="profile-listings" class="panel"></div>
+      <div id="profile-reports" class="panel"></div>
+    </aside>
+  </section>
+</main>
+
+</body>
+</html>
