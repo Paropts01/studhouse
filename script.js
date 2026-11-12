@@ -1,6 +1,6 @@
 /* ============================================================
    Stud House – shared JavaScript
-   v12: Populated student info & tips, dropdown navigation
+   v13: Image Lightbox Expansion
    ============================================================ */
 
 (function () {
@@ -55,7 +55,6 @@
     "admin.html":         "fa-shield-halved"
   };
 
-  /* Image helper — real Unsplash photos */
   function uns(id) {
     return `https://images.unsplash.com/photo-${id}?w=800&auto=format&fit=crop&q=80`;
   }
@@ -1072,7 +1071,7 @@
   }
 
   /* ============================================================
-     SHARED MODAL
+     SHARED MODAL & LIGHTBOX
      ============================================================ */
   function openModal(title, bodyHtml) {
     closeModal();
@@ -1099,6 +1098,30 @@
   function closeModal() {
     const m = document.getElementById("shared-modal");
     if (m) m.remove();
+  }
+
+  function openLightbox(src) {
+    closeLightbox();
+    const lb = document.createElement("div");
+    lb.className = "lightbox-backdrop";
+    lb.id = "shared-lightbox";
+    lb.innerHTML = `
+      <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+      <img src="${escapeHtml(src)}" alt="Expanded view">
+    `;
+    document.body.appendChild(lb);
+
+    const close = () => closeLightbox();
+    lb.querySelector(".lightbox-close").addEventListener("click", close);
+    lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+    
+    document.addEventListener("keydown", function esc(e) {
+      if (e.key === "Escape") { close(); document.removeEventListener("keydown", esc); }
+    });
+  }
+  function closeLightbox() {
+    const lb = document.getElementById("shared-lightbox");
+    if (lb) lb.remove();
   }
 
   /* ============================================================
@@ -1165,6 +1188,11 @@
         btn.classList.add("active");
       });
     });
+    // NEW: Make the main detail image clickable for lightbox
+    const mainImg = document.getElementById("detail-main-img");
+    if (mainImg) {
+      mainImg.addEventListener("click", () => openLightbox(mainImg.src));
+    }
   }
 
   /* ============================================================
@@ -1587,6 +1615,10 @@
   }
   function wireCardActions() {
     document.addEventListener("click", e => {
+      // Expand image if clicked
+      const img = e.target.closest(".card-media img");
+      if (img) { e.preventDefault(); openLightbox(img.src); return; }
+
       const viewBtn = e.target.closest("[data-view-listing]");
       if (viewBtn) { e.preventDefault(); openListingDetails(viewBtn.dataset.viewListing); return; }
       const chatBtn = e.target.closest("[data-chat-business]");
@@ -2347,7 +2379,7 @@
     if (v.idDocData.startsWith("data:application/pdf")) {
       return `<a class="text-link" href="${v.idDocData}" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> View uploaded PDF (${escapeHtml(v.idDocName)})</a>`;
     }
-    return `<img src="${v.idDocData}" alt="ID document for ${escapeHtml(v.fullName)}" class="admin-doc-preview">`;
+    return `<img src="${v.idDocData}" alt="ID document for ${escapeHtml(v.fullName)}" class="admin-doc-preview" style="cursor:zoom-in;" onclick="openLightbox(this.src)">`;
   }
   function verificationCard(v, withActions) {
     const statusBadge =
