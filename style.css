@@ -116,8 +116,8 @@ p { margin-top: 0; }
 .logo {
   display: block;
   width: auto;
-  height: 48px; 
-  max-width: 140px;
+  height: 140px;
+  max-width: 240px;
   object-fit: contain;
   background: transparent;
   border-radius: 0;
