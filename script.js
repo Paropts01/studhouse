@@ -1,6 +1,6 @@
 /* ============================================================
    Stud House – shared JavaScript
-   v14: Netlify URL fix, LCP WebP optimization
+   v15: Navbar Icons hardcoded in HTML, JS handles dynamic links
    ============================================================ */
 
 (function () {
@@ -41,19 +41,6 @@
   const REPORT_REASONS = ["Scam or fraud", "Incorrect information",
                            "Inappropriate content", "Not a real business",
                            "Not a real listing", "Other"];
-
-  const NAV_ICONS = {
-    "index.html":         "fa-house",
-    "accommodation.html": "fa-bed",
-    "businesses.html":    "fa-store",
-    "transport.html":     "fa-bus",
-    "discounts.html":     "fa-percent",
-    "about_us.html":      "fa-circle-info",
-    "login.html":         "fa-right-from-bracket",
-    "register.html":      "fa-user-plus",
-    "profile.html":       "fa-circle-user",
-    "admin.html":         "fa-shield-halved"
-  };
 
   /* Image helper — optimized for LCP (WebP, smaller size, compression) */
   function uns(id) {
@@ -1874,16 +1861,6 @@
     }
   }
 
-  function addNavIcons() {
-    document.querySelectorAll("#primary-links a").forEach(a => {
-      const href = (a.getAttribute("href") || "").toLowerCase();
-      const icon = NAV_ICONS[href];
-      if (icon && !a.querySelector("i")) {
-        a.insertAdjacentHTML("afterbegin", `<i class="fa-solid ${icon}"></i> `);
-      }
-    });
-  }
-
   function addAccountNavLinks() {
     const nav = document.getElementById("primary-links");
     if (!nav) return;
@@ -1941,7 +1918,6 @@
     }
     
     addAccountNavLinks();
-    addNavIcons();
     setActiveNavLink();
   }
 
