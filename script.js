@@ -1,6 +1,6 @@
 /* ============================================================
    Stud House – shared JavaScript
-   v13: Image Lightbox Expansion
+   v14: Netlify URL fix, LCP WebP optimization
    ============================================================ */
 
 (function () {
@@ -55,8 +55,9 @@
     "admin.html":         "fa-shield-halved"
   };
 
+  /* Image helper — optimized for LCP (WebP, smaller size, compression) */
   function uns(id) {
-    return `https://images.unsplash.com/photo-${id}?w=800&auto=format&fit=crop&q=80`;
+    return `https://images.unsplash.com/photo-${id}?w=500&auto=format,compress&fm=webp&q=75`;
   }
 
   /* ============================================================
@@ -147,9 +148,13 @@
     const u = currentUser();
     return !!u && u.role === "admin";
   }
+  
+  /* --- NETLIFY FIX: Forces .html back onto the page name --- */
   function currentPageName() {
-    const name = window.location.pathname.split("/").pop();
-    return (name || "index.html").toLowerCase();
+    let name = window.location.pathname.split("/").pop().toLowerCase();
+    if (!name) name = "index.html";
+    if (!name.endsWith(".html")) name += ".html";
+    return name;
   }
 
   function seedAdmin() {
@@ -1169,12 +1174,12 @@
     return `
       <div class="detail-gallery">
         <div class="detail-main-image">
-          <img id="detail-main-img" src="${escapeHtml(images[0])}" alt="${escapeHtml(title)}" onerror="this.style.display='none'">
+          <img id="detail-main-img" src="${escapeHtml(images[0])}" alt="${escapeHtml(title)}" fetchpriority="high" onerror="this.style.display='none'">
         </div>
         ${images.length > 1 ? `<div class="detail-thumbs">${images.map((src, i) => `
           <button type="button" class="detail-thumb${i === 0 ? " active" : ""}"
                   data-src="${escapeHtml(src)}" aria-label="View photo ${i + 1}">
-            <img src="${escapeHtml(src)}" alt="" onerror="this.parentElement.remove()">
+            <img src="${escapeHtml(src)}" alt="" loading="lazy" onerror="this.parentElement.remove()">
           </button>`).join("")}</div>` : ""}
       </div>
     `;
@@ -1188,7 +1193,6 @@
         btn.classList.add("active");
       });
     });
-    // NEW: Make the main detail image clickable for lightbox
     const mainImg = document.getElementById("detail-main-img");
     if (mainImg) {
       mainImg.addEventListener("click", () => openLightbox(mainImg.src));
@@ -1229,11 +1233,11 @@
       return;
     }
 
-    grid.innerHTML = items.map(item => `
+    grid.innerHTML = items.map((item, index) => `
       <article class="card" data-accommodation-id="${escapeHtml(item.id)}">
         <div class="card-media">
           <img src="${escapeHtml(listingImages(item)[0] || "")}" alt="${escapeHtml(item.title)}"
-               loading="lazy" onerror="this.style.display='none'">
+               loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" onerror="this.style.display='none'">
           <span class="card-badge">${escapeHtml(item.roomType)}</span>
         </div>
         <div class="card-body">
@@ -1309,11 +1313,11 @@
       return;
     }
 
-    grid.innerHTML = items.map(item => `
+    grid.innerHTML = items.map((item, index) => `
       <article class="card" data-transport-id="${escapeHtml(item.id)}">
         <div class="card-media">
           <img src="${escapeHtml(listingImages(item)[0] || "")}" alt="${escapeHtml(item.title)}"
-               loading="lazy" onerror="this.style.display='none'">
+               loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" onerror="this.style.display='none'">
           <span class="card-badge">${escapeHtml(item.mode)}</span>
         </div>
         <div class="card-body">
@@ -1374,11 +1378,11 @@
   function renderDeals() {
     const grid = document.getElementById("deals-grid");
     if (!grid) return;
-    grid.innerHTML = getAllDeals().map(item => `
+    grid.innerHTML = getAllDeals().map((item, index) => `
       <article class="card" data-deal-id="${escapeHtml(item.id)}">
         <div class="card-media">
           <img src="${escapeHtml(listingImages(item)[0] || "")}" alt="${escapeHtml(item.title)}"
-               loading="lazy" onerror="this.style.display='none'">
+               loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" onerror="this.style.display='none'">
           <span class="card-badge">${escapeHtml(item.discount)}</span>
         </div>
         <div class="card-body">
@@ -1466,7 +1470,7 @@
       readVerifications().filter(v => v.status === "pending").map(v => v.ownerEmail.toLowerCase())
     );
 
-    grid.innerHTML = items.map(item => {
+    grid.innerHTML = items.map((item, index) => {
       const pending = item.ownerEmail && pendingEmails.has(item.ownerEmail.toLowerCase())
         ? `<span class="verified-badge not-verified"><i class="fa-regular fa-clock"></i> Verification pending</span>`
         : "";
@@ -1474,7 +1478,7 @@
       <article class="card" data-business-id="${escapeHtml(item.id)}">
         <div class="card-media">
           <img src="${escapeHtml(item.image || "")}" alt="${escapeHtml(item.title)}"
-               loading="lazy" onerror="this.style.display='none'">
+               loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" onerror="this.style.display='none'">
           <span class="card-badge">${escapeHtml(item.category)}</span>
         </div>
         <div class="card-body">
@@ -1536,10 +1540,10 @@
       grid.innerHTML = `<p class="empty-state">No student posts yet. Be the first to share something useful.</p>`;
       return;
     }
-    grid.innerHTML = items.map(item => `
+    grid.innerHTML = items.map((item, index) => `
       <article class="card" data-post-id="${escapeHtml(item.id)}">
         <div class="card-media">
-          ${item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" onerror="this.style.display='none'">` : ""}
+          ${item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" onerror="this.style.display='none'">` : ""}
           <span class="card-badge">${escapeHtml(item.category)}</span>
         </div>
         <div class="card-body">
@@ -1577,10 +1581,10 @@
     const kindLabel = { business: "Business", info: "Student info", accommodation: "Accommodation", transport: "Transport", deal: "Deal" };
     const kindPage  = { business: "businesses.html", info: "businesses.html", accommodation: "accommodation.html", transport: "transport.html", deal: "discounts.html" };
 
-    grid.innerHTML = items.map(item => `
+    grid.innerHTML = items.map((item, index) => `
       <article class="card">
         <div class="card-media">
-          ${item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" onerror="this.style.display='none'">` : ""}
+          ${item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" onerror="this.style.display='none'">` : ""}
           <span class="card-badge">${escapeHtml(kindLabel[item.kind] || "Post")}</span>
         </div>
         <div class="card-body">
@@ -1615,7 +1619,6 @@
   }
   function wireCardActions() {
     document.addEventListener("click", e => {
-      // Expand image if clicked
       const img = e.target.closest(".card-media img");
       if (img) { e.preventDefault(); openLightbox(img.src); return; }
 
@@ -1853,7 +1856,9 @@
 
     document.querySelectorAll("#primary-links a").forEach(a => {
       const href = (a.getAttribute("href") || "").toLowerCase();
-      if (href === page) {
+      const finalHref = href.endsWith(".html") || href.includes("login") || href.includes("register") ? href : href + ".html";
+      
+      if (finalHref === page) {
         a.setAttribute("aria-current", "page");
         if (a.closest(".nav-dropdown-menu")) {
           isDropActive = true;
